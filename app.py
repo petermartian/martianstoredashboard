@@ -29,6 +29,7 @@ else:
         df = pd.read_excel("Martianstore.xlsx")  # Specify the correct extension
     except FileNotFoundError:
         st.error("Default file or directory not found. Please upload a file.")
+        st.stop()  # Stop the app if df can't be loaded
 
 # Creating Columns - We need two columns for the Start date and end date
 col1, col2 = st.columns(2)
