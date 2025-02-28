@@ -3,6 +3,7 @@ import plotly.express as px
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
 
