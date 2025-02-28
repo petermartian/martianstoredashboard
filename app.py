@@ -8,7 +8,7 @@ warnings.filterwarnings('ignore')
 st.set_page_config(page_title="Martian store!!!", page_icon=":bar_chart:",layout="wide")
 
 st.title(" :bar_chart: Martian Store EDA")
-st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=False)
+st.markdown('<style>div.block-container{padding-top:3rem;}</style>',unsafe_allow_html=True)
 
 # File uploader
 fl = st.file_uploader(":file_folder: Upload a file", type=["csv", "txt", "xlsx", "xls"])
