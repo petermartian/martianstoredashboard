@@ -170,3 +170,13 @@ with st.expander("Summary_Table"):
     sub_category_Year = pd.pivot_table(data = filtered_df, values = "Sales", index = ["Sub-Category"],columns = "month")
     st.write(sub_category_Year.style.background_gradient(cmap="Blues"))
 
+
+# Download original DataSet as CSV
+csv = filtered_df.to_csv(index=False).encode('utf-8')
+st.download_button(
+    label='Download Data', 
+    data=csv, 
+    file_name="Data.csv", 
+    mime_type="text/csv"
+)
+
