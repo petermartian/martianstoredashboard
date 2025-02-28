@@ -153,18 +153,37 @@ with chart2:
     fig.update_traces(text = filtered_df["Category"], textposition = "inside")
     st.plotly_chart(fig,use_container_width=True)
 
-import plotly.figure_factory as ff
+# Subheader for the section
 st.subheader(":point_right: Month wise Sub-Category Sales Summary")
+
+# Expander for the summary table
 with st.expander("Summary_Table"):
-    df_sample = df[0:5][["Region","State","City","Category","Sales","Profit","Quantity"]]
-    fig = ff.create_table(df_sample, colorscale = "Cividis")
+    # Take a sample of the first 5 rows of df for the table, selecting specific columns
+    df_sample = df.iloc[0:5][["Region", "State", "City", "Category", "Sales", "Profit", "Quantity"]]
+    
+    # Create a table using Plotly Figure Factory
+    fig = ff.create_table(df_sample, colorscale="Cividis")
     st.plotly_chart(fig, use_container_width=True)
 
-    st.markdown("Month wise sub-Category Table")
-    filtered_df["month"] = filtered_df["Order Date"].dt.month_name()
-    sub_category_Year = pd.pivot_table(data = filtered_df, values = "Sales", index = ["Sub-Category"],columns = "month")
+    # Month-wise sub-category sales table
+    st.markdown("Month wise Sub-Category Table")
+    
+    # Ensure "Order Date" is in datetime format (if not already done)
+    df["Order Date"] = pd.to_datetime(df["Order Date"])
+    
+    # Add a "month" column with month names
+    df["month"] = df["Order Date"].dt.month_name()
+    
+    # Create a pivot table for sales by Sub-Category and month
+    sub_category_Year = pd.pivot_table(
+        data=df, 
+        values="Sales", 
+        index="Sub-Category", 
+        columns="month"
+    )
+    
+    # Display the pivot table with a background gradient for better visualization
     st.write(sub_category_Year.style.background_gradient(cmap="Blues"))
-
 # Create a scatter plot
 data1 = px.scatter(filtered_df, x = "Sales", y = "Profit", size = "Quantity")
 data1['layout'].update(title="Relationship between Sales and Profits using Scatter Plot.",
