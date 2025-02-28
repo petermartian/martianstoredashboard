@@ -181,7 +181,6 @@ data1['layout'].update(
 )
 st.plotly_chart(data1, use_container_width=True)
 
-# Expander for viewing data
+# Expander for viewing the data
 with st.expander("View Data"):
     st.write(filtered_df.iloc[:500, 1:20:2].style.background_gradient(cmap="Oranges"))
-
