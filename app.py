@@ -48,3 +48,4 @@ df = df[(df["Order Date"] >= date1) & (df["Order Date"] <= date2)].copy()
 st.sidebar.header("Choose your filter: ")
 # Create for Region
 region = st.sidebar.multiselect("Pick your Region", df["Region"].unique())
+category = st.sidebar.multiselect("Pick your Category", df["Category"].unique())
