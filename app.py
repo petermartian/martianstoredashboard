@@ -6,4 +6,4 @@ warnings.filterwarnings('ignore')
 
 st.set_page_config(page_title="Martian_Store_Dashboard!!!", page_icon=":bar_chart:", layout="wide")
 
-st.title(" :bar_chart : Martian Store EDA")
+st.title(" :bar_chart: Martian Store EDA")
