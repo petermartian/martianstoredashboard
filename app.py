@@ -29,3 +29,21 @@ else:
         df = pd.read_excel("Martianstore.xlsx")  # Specify the correct extension
     except FileNotFoundError:
         st.error("Default file or directory not found. Please upload a file.")
+
+# Creating Columns - We need two columns for the Start date and end date
+col1, col2 = st.columns(2)
+
+df["Order Date"] = pd.to_datetime(df["Order Date"])
+
+# Getting the min and max date
+startDate = pd.to_datetime(df["Order Date"]).min()
+endDate = pd.to_datetime(df["Order Date"]).max()
+
+#Setting up the Columns 
+with col1:
+    date1 = pd.to_datetime(st.date_input("Start Date", startDate))
+
+with col2:
+    date2 = pd.to_datetime(st.date_input("End Date", endDate))
+
+df = df[(df["Order Date"] >= date1) & (df["Order Date"] <= date2)].copy()
