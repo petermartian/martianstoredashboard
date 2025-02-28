@@ -5,39 +5,27 @@ import os
 import warnings
 warnings.filterwarnings('ignore')
 
-# Setting the Page
-st.set_page_config(page_title="Martian_Store_Dashboard!!!", page_icon=":bar_chart:", layout="wide")
+st.set_page_config(page_title="Superstore!!!", page_icon=":bar_chart:",layout="wide")
 
-# Setting the title of the page and aligning the title up on the page
-st.title(" :bar_chart: Martian Store EDA")
-st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
+st.title(" :bar_chart: Sample SuperStore EDA")
+st.markdown('<style>div.block-container{padding-top:1rem;}</style>',unsafe_allow_html=True)
 
-# File Uploader
-fl = st.file_uploader(":file_folder: Upload a file", type=["csv", "txt", "xlsx", "xls"])
-
-# File handling logic
+fl = st.file_uploader(":file_folder: Upload a file",type=(["csv","txt","xlsx","xls"]))
 if fl is not None:
     filename = fl.name
     st.write(filename)
-    if filename.endswith(('.csv', '.txt')):
-        df = pd.read_csv(fl)  # Read directly from the file object
-    elif filename.endswith(('.xlsx', '.xls')):
-        df = pd.read_excel(fl)  # Read Excel files
+    df = pd.read_csv(filename, encoding = "ISO-8859-1")
 else:
-    try:
-        os.chdir(r"C:\Users\io\Documents\Peter\AP BUILDING\Martian store")
-        df = pd.read_excel("Martianstore.xlsx")  # Specify the correct extension
-    except FileNotFoundError:
-        st.error("Default file or directory not found. Please upload a file.")
-        st.stop()  # Stop the app if df can't be loaded
+    os.chdir(r"C:\Users\AEPAC\Desktop\Streamlit")
+    df = pd.read_csv("Superstore.csv", encoding = "ISO-8859-1")
 
-# Creating Columns - We need two columns for the Start date and end date
-col1, col2 = st.columns(2)
+col1, col2 = st.columns((2))
 df["Order Date"] = pd.to_datetime(df["Order Date"])
-startDate = pd.to_datetime(df["Order Date"]).min()     # Getting the min and max date
+
+# Getting the min and max date 
+startDate = pd.to_datetime(df["Order Date"]).min()
 endDate = pd.to_datetime(df["Order Date"]).max()
 
-#Setting up the Columns 
 with col1:
     date1 = pd.to_datetime(st.date_input("Start Date", startDate))
 
