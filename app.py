@@ -43,3 +43,8 @@ with col2:
     date2 = pd.to_datetime(st.date_input("End Date", endDate))
 
 df = df[(df["Order Date"] >= date1) & (df["Order Date"] <= date2)].copy()
+
+# We want to add sidebar
+st.sidebar.header("Choose your filter: ")
+# Create for Region
+region = st.sidebar.multiselect("Pick your Region", df["Region"].unique())
