@@ -14,11 +14,17 @@ st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allo
 # File Uploader
 fl = st.file_uploader(":file_folder: Upload a file", type=["csv", "txt", "xlsx", "xls"])
 
-# File handling logic using if
+# File handling logic
 if fl is not None:
     filename = fl.name
     st.write(filename)
-    df = pd.read_csv(filename)
+    if filename.endswith(('.csv', '.txt')):
+        df = pd.read_csv(fl)  # Read directly from the file object
+    elif filename.endswith(('.xlsx', '.xls')):
+        df = pd.read_excel(fl)  # Read Excel files
 else:
-    os.chdir(r"C:\Users\io\Documents\Peter\APP BUILDING\Martian store")
-    df = pd.read_xlsx("Martianstore")
+    try:
+        os.chdir(r"C:\Users\io\Documents\Peter\AP BUILDING\Martian store")
+        df = pd.read_excel("Martianstore.xlsx")  # Specify the correct extension
+    except FileNotFoundError:
+        st.error("Default file or directory not found. Please upload a file.")
