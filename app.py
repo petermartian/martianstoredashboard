@@ -9,7 +9,7 @@ warnings.filterwarnings('ignore')
 
 st.set_page_config(page_title="Martian store!!!", page_icon=":bar_chart:",layout="wide")
 
-st.title(" :bar_chart: Martian Store EDA")
+st.title(" :bar_chart: Martian Store Dashboard")
 st.markdown('<style>div.block-container{padding-top:3rem;}</style>',unsafe_allow_html=True)
 
 # File uploader
