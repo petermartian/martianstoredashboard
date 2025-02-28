@@ -87,7 +87,7 @@ category_df = filtered_df.groupby(by = ["Category"], as_index = False)["Sales"].
 
 with col1:
     st.subheader("Category wise Sales")
-    fig = px.bar(category_df, x = "Category", y = "Sales", text = ['${:,.2f}'.format(x) for x in category_df["Sales"]],
+    fig = px.bar(category_df, x = "Category", y = "Sales", text = ['NGN{:,.2f}'.format(x) for x in category_df["Sales"]],
                  template = "seaborn")
     st.plotly_chart(fig,use_container_width=True, height = 200)
 
