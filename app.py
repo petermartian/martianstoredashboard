@@ -33,11 +33,8 @@ else:
 
 # Creating Columns - We need two columns for the Start date and end date
 col1, col2 = st.columns(2)
-
 df["Order Date"] = pd.to_datetime(df["Order Date"])
-
-# Getting the min and max date
-startDate = pd.to_datetime(df["Order Date"]).min()
+startDate = pd.to_datetime(df["Order Date"]).min()     # Getting the min and max date
 endDate = pd.to_datetime(df["Order Date"]).max()
 
 #Setting up the Columns 
