@@ -2,7 +2,6 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 import os
-import openpyxl xlrd
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -18,7 +17,7 @@ if fl is not None:
     df = pd.read_csv(filename, encoding = "ISO-8859-1")
 else:
     os.chdir(r"C:\Users\io\Documents\Peter\APP BUILDING\Martian store")
-    df = pd.read_csv("Superstore.csv", encoding = "ISO-8859-1")
+    df = pd.read_csv("Superstore", encoding = "ISO-8859-1")
 
 col1, col2 = st.columns((2))
 df["Order Date"] = pd.to_datetime(df["Order Date"])
